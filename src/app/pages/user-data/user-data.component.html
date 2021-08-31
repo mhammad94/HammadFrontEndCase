@@ -1,0 +1,177 @@
+   <!-- navbar area, for filter input-->
+
+   <nav class="navbar sticky-top navbar-light bg-light">
+    <div class="container-fluid w-50">
+        <label for="search-user" class="col-sm-2 col-form-label">Search for employee:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="search-user" placeholder="Enter a name">
+        </div>
+    </div>
+</nav>
+<!-- /end of navbar area-->
+<!-- part for displaying user content-->
+  <!-- part for displaying user content-->
+  <div class="container pt-5">
+    <h2>Users</h2>
+    <table class="table mb-5 align-middle" id="users">
+        <thead>
+            <tr>
+                <th style="width:20%;" scope="col">#</th>
+                <th style="width:20%;" scope="col">First</th>
+                <th style="width:20%;" scope="col">Last</th>
+                <th style="width:20%;" scope="col">Role</th>
+                <th style="width:20%;" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userRole; let i = index">
+                <th scope="row">{{ i + 1}}</th>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>User</td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser(i)">Delete</button>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Senior Users</h2>
+    <table class="table mb-5 align-middle" id="senior-users">
+        <thead>
+            <tr>
+                <th style="width:20%;" scope="col">#</th>
+                <th style="width:20%;" scope="col">First</th>
+                <th style="width:20%;" scope="col">Last</th>
+                <th style="width:20%;" scope="col">Role</th>
+                <th style="width:20%;" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of seniorUsers; let i = index">
+                <th scope="row">{{ i + 1}}</th>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>Senior User</td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteSeniorUser(i)">Delete</button>
+            </tr>
+        </tbody>
+    </table>
+    <h2>WFM</h2>
+    <table class="table mb-5 align-middle" id="wfm-users">
+        <thead>
+            <tr>
+                <th style="width:20%;" scope="col">#</th>
+                <th style="width:20%;" scope="col">First</th>
+                <th style="width:20%;" scope="col">Last</th>
+                <th style="width:20%;" scope="col">Role</th>
+                <th style="width:20%;" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of wfmUsers; let i = index">
+              <th scope="row">{{ i + 1}}</th>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+                <td>WFM Professional</td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteWFMUser(i)">Delete</button>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="openModalWithClass(template)"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-user-modal">
+        Add User
+    </button>
+</div>
+<!-- /end of displaying content-->
+
+
+
+
+
+
+ <!-- modal area-->
+ <div class="modal fade" id="add-user-modal" tabindex="-1" aria-labelledby="add-user-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="add-user-modal-label">Add a new user</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                  <label for="first-name-input">First Name</label>
+                  <input type="text" class="form-control" id="first-name-input" placeholder="Mark">
+              </div>
+              <div class="mb-3">
+                  <label for="last-name-input">Last Name</label>
+                  <input type="text" class="form-control" id="last-name-input" placeholder="Otto">
+              </div>
+              <div class="mb-3">
+                  <label for="role-select">Role</label>
+                  <select class="form-select" id="role-select" aria-label="Role select">
+                      <option selected>Select a role</option>
+                      <option value="1">User</option>
+                      <option value="2">Senior User</option>
+                      <option value="3">WFM</option>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add a new user</h4>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="addUserForm">
+    <div class="mb-3">
+        <label for="first-name-input">First Name</label>
+        <input [formControl]="addUserForm.controls.firstName" type="text" class="form-control" id="first-name-input" placeholder="Mark">
+    </div>
+    <ng-container *ngIf="(addUserForm.firstName.dirty || addUserForm.controls.firstName.touched ) && addUserForm.controls.firstName.required">
+      <div class="text-danger">
+        *Value Required
+      </div>
+    </ng-container>
+
+    <div class="mb-3">
+        <label for="last-name-input">Last Name</label>
+        <input [formControl]="addUserForm.controls.lastName"  type="text" class="form-control" id="last-name-input" placeholder="Otto">
+    </div>
+    <ng-container *ngIf="(addUserForm.controls.lastName.dirty || addUserForm.controls.lastName.touched ) && addUserForm.controls.lastName.required">
+      <div class="text-danger">
+        *Value Required
+      </div>
+    </ng-container>
+    <div class="mb-3">
+        <label for="role-select">Role</label>
+        <select [formControl]="addUserForm.controls.role"   class="form-select" id="role-select" aria-label="Role select">
+            <option selected>Select a role</option>
+            <option value="1">User</option>
+            <option value="2">Senior User</option>
+            <option value="3">WFM</option>
+        </select>
+        <ng-container *ngIf="(addUserForm.controls.lastName.role || addUserForm.controls.lastName.role ) && addUserForm.controls.role.required">
+          <div class="text-danger">
+            *Value Required
+          </div>
+        </ng-container>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary" (click)="addUser(); modalRef?.hide()">Save changes</button>
+</div>
+
+</ng-template>
+
