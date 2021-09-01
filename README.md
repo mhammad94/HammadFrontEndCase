@@ -1,27 +1,23 @@
-# AngularTest
+- I implemented the functionality to read the JSON file of Users therough HTTP client.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+- I have used multiple Rxjs Operators while implementing the funtionality in the app i.e: debounceTime, map etc.
 
-## Development server
+- The search funtionality was implemted using RxJs.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- As there was no backend functionality so extra code was written to acienve the required functionality.
+ 
+- The App is achieving the functionality of creating a new User and delete an existing user.
 
-## Code scaffolding
+- The search funtionality is implemented on first name basis.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Questions:-
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Q: How long did you spend on this assignment? What would you have done differnet if you had more time ?
+Ans: I spent around 3.5 hours on this application If I had more time I would have implemented component resuability in the app so that there would less HTML.
 
-## Running end-to-end tests
+Q: What are focus areas if your code would have to be part of an actual application? 
+Ans: My main focus areas of code is code resuability, writting less code and achieving more functionality, keeping an eye on the HTTP calls and structuring the app in such a way when any changes are required there is not alot of hassle.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
